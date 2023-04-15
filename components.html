@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Components - Freenet Manual</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Architecture</li><li class="chapter-item expanded "><a href="components.html" class="active"><strong aria-hidden="true">2.</strong> Components</a></li><li class="chapter-item expanded "><a href="p2p-network.html"><strong aria-hidden="true">3.</strong> P2P Network</a></li><li class="chapter-item expanded affix "><li class="part-title">Developer Guide</li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">4.</strong> Tutorial: Create an App</a></li><li class="chapter-item expanded "><a href="manifest.html"><strong aria-hidden="true">5.</strong> locutus.toml format</a></li><li class="chapter-item expanded affix "><li class="part-title">Examples</li><li class="chapter-item expanded "><a href="examples/antiflood-tokens.html"><strong aria-hidden="true">6.</strong> Antiflood Tokens</a></li><li class="chapter-item expanded "><a href="examples/blind-trust-tokens.html"><strong aria-hidden="true">7.</strong> Blind Trust Tokens</a></li><li class="chapter-item expanded affix "><li class="part-title">Community and Support</li><li class="chapter-item expanded "><a href="community.html"><strong aria-hidden="true">8.</strong> Community</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">9.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="glossary.html"><strong aria-hidden="true">10.</strong> Glossary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Freenet Manual</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="anatomy-of-a-decentralized-application"><a class="header" href="#anatomy-of-a-decentralized-application">Anatomy of a Decentralized Application</a></h1>
+<p>Delegates, contracts, and user interfaces (UIs) each serve distinct roles in the
+Freenet ecosystem. Contracts control public data, or &quot;shared state&quot;. Delegates
+act as the user's agent and can store private data on the user's behalf, while
+UIs provide an interface between these and the user through a web browser.</p>
+<p><img src="components.svg" alt="Architectural Primitives Diagram" /></p>
+<h2 id="freenet-kernel"><a class="header" href="#freenet-kernel">Freenet Kernel</a></h2>
+<p>The kernel is the core of Freenet, it's the software that runs on the user's
+computer. It's responsible for:</p>
+<ul>
+<li>Providing a user-friendly interface to access Freenet via a web browser</li>
+<li>Host the user's delegates and the private data they store</li>
+<li>Host contracts and their associated data on behalf of the network</li>
+<li>Manage communication between contracts, delegates, and UI componets</li>
+</ul>
+<p>The kernel is written in Rust and is designed to be small (hopefully less than 5
+MB), efficient, and run on a wide range of devices like smartphones, desktop
+computers, and embedded devices.</p>
+<h2 id="user-interface"><a class="header" href="#user-interface">User Interface</a></h2>
+<p>On the normal web, a user might visit https://gmail.com/, their browser
+will download the Gmail user interface which then runs in their browser and connects
+back to the Gmail servers. </p>
+<p>On Freenet the user interface is downloaded from a Freenet contract, and it
+interacts with contracts and delegates through the Freenet kernel.</p>
+<p><img src="ui_delegate_contract.svg" alt="Delegate, Contrat, and UI Diagram" /></p>
+<p>These UIs are built using web technologies such as HTML, CSS, and JavaScript,
+and are distributed over Freenet and run in a web browser. UIs can create,
+retrieve, and update contracts through a WebSocket connection to the local
+Freenet peer, as well as communicate with delegates. </p>
+<p>Because UIs run in a web browser, they can be built using any web framework,
+such as React, Angular, Vue.js, Bootstrap, and so on. </p>
+<h2 id="contracts"><a class="header" href="#contracts">Contracts</a></h2>
+<p>Contracts in Freenet are <a href="https://webassembly.org">WebAssembly</a> components that
+manage and regulate public state. They can be likened to inodes in a filesystem,
+tables in a database, or memory locations in a globally shared memory. Contracts
+define the circumstances under which state can be modified and whether a given
+state is allowed under the contract.</p>
+<p>Contracts and their associated state reside on the Freenet network on peers
+determined by the contract's location, which is derived from its WebAssembly
+code and parameters. While a user's delegates are hosted on their local Freenet
+peer, contracts are hosted on the network as a whole.</p>
+<p>Contracts also outline how to merge two valid states, creating a new state that
+incorporates both. This process ensures <a href="https://en.wikipedia.org/wiki/Eventual_consistency">eventual
+consistency</a> of the state in
+Freenet, using an approach akin to
+<a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a>.</p>
+<p>Each contract is identified by a cryptographic hash, which is a combination of
+its code and parameters, also referred to as its &quot;key&quot;. This key is used to
+identify the contract and to verify that the contract's code and parameters have
+not been tampered with.</p>
+<h3 id="contract-use-cases"><a class="header" href="#contract-use-cases">Contract Use Cases</a></h3>
+<p>Take, for example, a public blog contract. The state of this contract would be
+the blog's content, which consists of a list of blog posts. The code within the
+contract dictates that new posts may only be added if they are signed by the
+blog's owner, while the contract's parameters include the blog owner's public
+key.</p>
+<h2 id="delegates"><a class="header" href="#delegates">Delegates</a></h2>
+<p>Delegates are WebAssembly code that act as user avatars on Freenet, they
+must implement the
+<a href="https://github.com/freenet/locutus/blob/f1c8075e173f171c17ffa8d08803b2c9aea4ddf3/crates/locutus-stdlib/src/component_interface.rs#L121">ComponentInterface</a>.</p>
+<p>Delegates run in the Freenet kernel and manage private data and interact with
+other Freenet entities like contracts, apps, and other delegates on behalf of
+the user. They can store and control private data like cryptographic keys,
+tokens, and passwords, and communicate with users, for example to ask permission
+to sign some data. They can be created by UI components or other delegates.</p>
+<p>Unlike contracts, which require network verification, delegates run on the
+user's computer and are trusted to execute code without verification. Delegates'
+state is private, while contracts' state is public but may be encrypted.</p>
+<p>Delegates are used for:</p>
+<ul>
+<li>Managing private data similar to a browser's <a href="https://en.wikipedia.org/wiki/Web_storage">web
+storage</a>
+<ul>
+<li>eg. private keys, tokens</li>
+</ul>
+</li>
+<li>Acting on the user's behalf on Freenet
+<ul>
+<li>eg. consuming received messages in an inbox</li>
+</ul>
+</li>
+<li>Storing user data
+<ul>
+<li>e.g., contacts, messages</li>
+</ul>
+</li>
+</ul>
+<h3 id="origin-attestation"><a class="header" href="#origin-attestation">Origin Attestation</a></h3>
+<p>Delegates communicate with apps and other delegates using messages, a crucial
+aspect of which is the delegate's ability to identify the origin of a message.
+The origin is identified by the key associated with the app, contract, or other
+delegate that sent the message. This key is generated cryptographically based on
+the code and configuration parameters of the sender, enabling delegates to
+verify the behavior of other delegates or apps with which they interact.</p>
+<p>This allows for highly flexible composability, as components can trust the
+behavior of the components they communicate with by verifying their code and
+configuration parameters.</p>
+<h3 id="delegate-use-cases"><a class="header" href="#delegate-use-cases">Delegate Use Cases</a></h3>
+<ul>
+<li>
+<p>A key manager delegate is responsible for managing a user's private keys,
+other components can request that the key manager delegate sign messages
+or other data on their behalf.</p>
+</li>
+<li>
+<p>An inbox delegate is responsible for maintaining an inbox of messages sent to
+the user in a messaging system. It pulls messages from an inbox contract,
+decrypts them, and stores them locally where they can be queried by other
+components.</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="p2p-network.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="p2p-network.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
